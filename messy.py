@@ -122,16 +122,15 @@ def print_delays(data: pd.DataFrame, sp):
             r.drop(idx, inplace=True)
 
 
-    if sp:
-        plot = r.filter(['time', 'delay'], axis='columns')
-        plot['time'] = plot['time'].astype(str)
-        for idx, p in plot.iterrows():
-            plot.at[idx, 'time'] = dtp.parse(p['time']).date().strftime('%a %d')
-        
-        plot.boxplot(by='time', ax=sp)
-        plt.title('Reply Delays')
-        plt.xlabel('Date')
-        plt.ylabel('Time / hrs')
+    plot = r.filter(['time', 'delay'], axis='columns')
+    plot['time'] = plot['time'].astype(str)
+    for idx, p in plot.iterrows():
+        plot.at[idx, 'time'] = dtp.parse(p['time']).date().strftime('%a %d')
+    
+    plot.boxplot(by='time', ax=sp)
+    plt.title('Reply Delays')
+    plt.xlabel('Date')
+    plt.ylabel('Time / hrs')
     return r
 
 def graph_times(data: pd.DataFrame, sp: plt.Subplot):
