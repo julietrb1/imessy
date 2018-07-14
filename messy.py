@@ -123,13 +123,18 @@ def print_delays(data: pd.DataFrame, sp):
 
 
     plot = r.filter(['time', 'delay'], axis='columns')
-    plot['time'] = plot['time'].astype(str)
+    
     for idx, p in plot.iterrows():
-        plot.at[idx, 'time'] = dtp.parse(p['time']).date().strftime('%a %d')
+        plot.at[idx, 'time'] = plot.at[idx, 'time'].date()
+
+    s_times = [d.date().strftime('%a %d') for d in plot.groupby('time').groups.keys()]
+
+    plot['time'] = plot['time'].astype(dt.date)
     
     plot.boxplot(by='time', ax=sp)
     plt.title('Reply Delays')
     plt.xlabel('Date')
+    plt.xticks(np.arange(len(s_times)) + 1, s_times)
     plt.ylabel('Time / hrs')
     return r
 
