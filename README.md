@@ -1,6 +1,8 @@
 # iMessy
 
-> 📚 This repository has been archived, as it served its purpose and is no longer under active development. Good to see you, though!
+> ## No longer under active development.
+>
+>  📚 This repository has been archived, as it served its purpose and is no longer under active development. Good to see you, though!
 
 This is a simple Python application (for Mac) that makes use of numpy and matplotlib to produce four sets of graphs that give insights into a conversation held via iMessage.
 
